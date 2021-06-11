@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/promocoes"])
-class PromocaoController(
-    val promocaoService: PromocaoService
-    ) {
+class PromocaoController(val promocaoService: PromocaoService) {
 
     @GetMapping
     fun getAll(@RequestParam(required = false, defaultValue = "0") offSet: Int,
