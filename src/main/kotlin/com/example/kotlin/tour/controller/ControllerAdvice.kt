@@ -29,7 +29,7 @@ class ControllerAdvice (val messageSource: MessageSource){
             return ResponseEntity.status(restException.getStatus())
                 .body(ErrorResponse(restException.getResponseBodyCode().orEmpty(),
                     getMessage(restException.getResponseBodyCode().orEmpty(),
-                        restException.getArguments().orEmpty())))
+                        restException.getArguments())))
         }
         if(restException.getResponseBody() != null) {
                 return ResponseEntity.status(restException.getStatus())
@@ -38,7 +38,8 @@ class ControllerAdvice (val messageSource: MessageSource){
         return ResponseEntity.status(restException.getStatus()).build()
     }
 
-    private fun getMessage(code: String, args: Array<out Any>): String {
+    private fun getMessage(code: String, args: Array<Any>?): String {
         return this.messageSource.getMessage(code, args, LocaleContextHolder.getLocale())
     }
+
 }

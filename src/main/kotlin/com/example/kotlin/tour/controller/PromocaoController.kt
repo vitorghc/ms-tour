@@ -15,8 +15,8 @@ class PromocaoController(val promocaoService: PromocaoService) {
     fun getAll(@RequestParam(required = false, defaultValue = "0") offSet: Int,
                @RequestParam(required = false, defaultValue = "3") limit: Int)
     : ResponseEntity<List<PromocaoDomain>> {
-        var listaPromocoes = promocaoService.getAll(offSet, limit)
-        val status = if(listaPromocoes.size == 0) HttpStatus.NOT_FOUND else HttpStatus.OK
+        val listaPromocoes = promocaoService.getAll(offSet, limit)
+        val status = if(listaPromocoes.isEmpty()) HttpStatus.NOT_FOUND else HttpStatus.OK
         return ResponseEntity(listaPromocoes, status)
     }
 
@@ -28,7 +28,7 @@ class PromocaoController(val promocaoService: PromocaoService) {
 
     @GetMapping(value = ["/{id}"])
     fun getById(@PathVariable id:Long): ResponseEntity<PromocaoDomain?> {
-        var promocao = promocaoService.getById(id)
+        val promocao = promocaoService.getById(id)
         return ResponseEntity(promocao, HttpStatus.OK)
     }
 

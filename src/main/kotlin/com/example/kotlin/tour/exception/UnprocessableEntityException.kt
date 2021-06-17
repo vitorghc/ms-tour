@@ -25,7 +25,7 @@ class UnprocessableEntityException : RestException {
 
     constructor(responseBodyCode: String, vararg arguments: Any) {
         this.responseBodyCode = responseBodyCode
-        this.arguments = arrayOf(arguments)
+        this.arguments = arrayOf(*arguments)
     }
 
     override fun getResponseBodyCode() : String? {

@@ -14,7 +14,7 @@ class PromocaoService(
     ) {
 
     fun getById(id:Long): PromocaoDomain {
-        return promocaoRepository.findById(id).orElseThrow { UnprocessableEntityException("400.002", "helo") }
+        return promocaoRepository.findById(id).orElseThrow { UnprocessableEntityException("400.002", "Test") }
     }
 
     fun deleteByid(id:Long) {
